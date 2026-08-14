@@ -3,14 +3,14 @@
 import { where } from 'firebase/firestore'
 import { useCollection } from '@/hooks/useFirestore'
 import { useAuth } from '@/hooks/useAuth'
-import { getUsersCollection } from '@/lib/firebase/firestore'
+import { getNotesCollection } from '@/lib/firebase/firestore'
 import { LoadingSpinner } from '@/components/shared/LoadingSpinner'
 import { EmptyState } from '@/components/shared/EmptyState'
 
 export function NotesList() {
   const { user } = useAuth()
   const { data: notes, loading } = useCollection(
-    getUsersCollection(),
+    getNotesCollection(),
     where('uid', '==', user?.uid ?? '')
   )
 
